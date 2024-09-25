@@ -3,7 +3,7 @@ import express from "express";
 import mongoose from "mongoose";
 // import { productSchema } from "./models/productModel.jsx";
 const app = express();
-const port = 8000;
+const port = process.env.PORT || 3000;
 const MONGO_URL = process.env.MONGO_URL
 
 app.use(express.json())
@@ -27,7 +27,7 @@ app.post("/products", async (req, res) => {
 mongoose.connect(MONGO_URL)
   .then(() => {
     console.log('Connected!')
-    app.listen(8000, () => console.log("Listening on port 3000"))
+    app.listen(port, () => console.log(`Listening on port ${port}`))
   }).catch( (error) => {
     console.log(error);
   });
