@@ -1,7 +1,10 @@
+import 'dotenv/config';
 import express from "express";
 import mongoose from "mongoose";
-// import Product from "./models/productModel";
+// import { productSchema } from "./models/productModel.jsx";
 const app = express();
+const port = 8000;
+const MONGO_URL = process.env.MONGO_URL
 
 app.use(express.json())
 
@@ -21,13 +24,15 @@ app.post("/products", async (req, res) => {
   }
 })
 
-mongoose.connect('mongodb+srv://njematitus:eQ7Vtj94osH2cKIF@cluster0.cwx5g.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0')
+mongoose.connect(MONGO_URL)
   .then(() => {
     console.log('Connected!')
-    app.listen(3000, () => console.log("Listening on port 3000"))
+    app.listen(8000, () => console.log("Listening on port 3000"))
   }).catch( (error) => {
     console.log(error);
   });
 
+
+  
 
 
